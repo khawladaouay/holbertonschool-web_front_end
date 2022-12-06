@@ -3,8 +3,16 @@ html {
   }
 body {
 	color:#161616;
-	visually-hidden: none;
-	card-category: #D73953;
-	section-tagline: #D73953;
-
-  }
+	}
+a {
+	color: #161616;
+	 }	
+.visually-hidden­ {
+	display: none;
+}
+.card-category {
+	color:#D73953;
+}
+.section-tagline {
+	color: #d73953;
+}	
