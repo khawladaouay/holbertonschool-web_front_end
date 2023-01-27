@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <title>Create basic cookie</title>
+</head>
+<body>
+	<script type="text/javascript">
+		let availableItems = ["Shampoo", "Soap", "Sponge", "Water"];
+		function addItemToCart(item) {
+        sessionStorage.setItem(item, true);
+      }
+
+		if (typeof(sessionStorage) == 'undefined') {
+			alert("Sorry, your browser does not support Web storage. Try again with a better one");
+		}else{
+			function createStore(){
+				const ul = document.createElement("ul");
+				document.body.appendChild(ul);
+
+				for(const item of availableItems){
+					const cartItem = document.createElement("li");
+					cartItem.innerHTML = item;
+					cartItem.addEventListener("click", function(){
+						addItemToCart(this.innerHTML);
+					});
+				}
+
+			}
+			function displayCart(){
+				const para =document.createElement("p");
+				para.innerHTML = "You previously had " + sessionStorage.length + " items in your cart";
+				document.body.appendChild(para);
+			}
+			createStore();
+			displayCart();
+		}
+		
+	</script>
+</body>
+
+</html>
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <title>Create basic cookie</title>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+  <script>
+	function setCookies(){
+	const firstname = document.getElementById('firstname').value;
+	const email = document.getElementById('email').value;
+	
+	cookies.set("firstname", firstname, {expires: 10});
+	cookies.set("email", email, {expires: 10});
+	showWelcomeMessageOrForm();
+}
+function showCookies(){
+	let email = cookies.set("email");
+	let firstName = cookies.set("firstname");
+	const para = document.createElement("p");
+	para.innerHTML = `Email: ${email} - Firstname: ${firstName}`;
+	document.body.appendChild(para);
+}
+function showForm(){
+	const msg = document.getElementById("#welcome-msg");
+	if(msg) {
+		msg.remove();
+	}
+	document.getElementById("#form").style.display = "block";
+}
+
+function hideForm(){
+	document.getElementById("#form").style.display = "none";
+}
+
+function deleteCookiesAndShowForm(){
+	cookies.remove("firstname");
+	cookies.remove("email");
+    showForm();
+}
+function showWelcomeMessageOrForm(){
+	if (cookies.set("email") && cookies.set("firstname")) {
+          hideForm();
+          const welcomeMsg = document.createElement("h1");
+          welcomeMsg.setAttribute("id", "welcome");
+		  welcomeMsg.innerHTML = `<h1>Welcome: ${cookies.set(
+            "firstname"
+          )} <a style="font-weight: normal; font-style: italic; margin-left: 10px;" onclick="deleteCookiesAndShowForm()">(logout)</a></h1>`;
+		  document.body.appendChild(welcomeMsg);
+        } else showForm();
+}
+showWelcomeMessageOrForm();
+
+  </script>
+</head>	
+<body>
+	<div>
+		<header>
+		  <h1>Login to the website</h1>
+		</header>
+		<div>
+		  <input type="text" id="firstname" placeholder="Firstname" />
+		  <input type="text" id="email" placeholder="Email" />
+		  <button onclick="setCookies()">Log me in</button>
+		</div>
+	  </div>
+	 <!--<div>
+		<header>
+		  <h1>Cookies</h1>
+		</header>
+		<div>
+		  <button onclick="showCookies()">Show the cookies</button>
+		</div>
+	  </div>
+	  --> 
+</body>
+
+</html>
+</html>
